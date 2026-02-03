@@ -1,0 +1,28 @@
+firebase.initializeApp(firebaseConfig);
+
+db.ref('events').on('value', (snapshot) => {
+    const container = document.getElementById('events-container');
+    container.innerHTML = '';
+    const data = snapshot.val() || {};
+    Object.entries(data).forEach(([id, event]) => {
+        const card = document.createElement('div');
+        card.className = 'card-golden p-6 rounded-lg shadow-md';
+        card.innerHTML = `
+                <img src="${event.image || 'img/entity-logo.jpeg'}" alt="${event.title}" class="w-full h-40 object-cover rounded mb-4">
+                <h3 class="text-xl font-bold mb-2">${event.title}</h3>
+                <p class="text-muted-foreground mb-2">${event.desc}</p>
+                <p class="text-sm text-accent">التاريخ: ${event.date}</p>
+            `;
+        container.appendChild(card);
+    });
+    if (Object.keys(data).length === 0) {
+        container.innerHTML = '<p class="text-center text-muted-foreground">لا توجد فعاليات حاليًا.</p>';
+    }
+});
+db.ref('news').on('value', (snapshot) => {
+    const container = document.getElementById('news-ticker');
+    container.innerHTML = '';
+    const data = snapshot.val() || {};
+    const titles = Object.values(data).map(item => item.title).join(' - '); // جمع العناوين بـ "-"
+    container.innerHTML = titles ? `<span>${titles}</span>` : 'لا توجد أخبار حاليًا.';
+});
