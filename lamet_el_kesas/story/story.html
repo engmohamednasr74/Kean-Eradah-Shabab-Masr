@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لَمّة القصص | عرض القصة</title>
+
+    <!-- ستايلات الكيان الأساسية -->
+    <title>لَمّة القصص | عرض القصة</title>
+    <link rel="stylesheet" href="css/text-css2.css">
+    <link rel="stylesheet" href="css/test.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/style2.css">
+
+    <!-- تحسينات خاصة بصفحة القصة (نظيفة واحترافية زي الكيان) -->
+    <style>
+        .video-container {
+            position: relative;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 20px 40px -10px hsl(var(--shadow-color) / 0.3);
+            border: 3px solid hsl(var(--golden) / 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .video-container:hover {
+            border-color: hsl(var(--golden));
+            transform: translateY(-8px);
+        }
+
+        .episode-button {
+            transition: all 0.3s ease;
+            border: 2px solid hsl(var(--golden) / 0.2);
+            border-radius: 1rem;
+            padding: 1rem;
+        }
+
+        .episode-button:hover {
+            background: hsl(var(--primary) / 0.1);
+            border-color: hsl(var(--golden));
+            transform: translateX(-8px);
+        }
+
+        .episode-button.active {
+            background: hsl(var(--primary) / 0.15);
+            border-color: hsl(var(--golden));
+            box-shadow: 0 0 20px hsl(var(--golden) / 0.4);
+        }
+
+        .current-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: hsl(var(--accent));
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-top: 2rem;
+        }
+
+        .back-btn {
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: hsl(var(--accent) / 0.2);
+            transform: scale(1.05);
+        }
+
+        /* إخفاء الخلفية المزدحمة (النجوم والفوانيس) عشان الديزاين يبقى نظيف */
+        .fixed.inset-0 {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-background">
+
+    <!-- Header الكيان (sticky + golden accents) -->
+    <header class="bg-primary sticky top-0 z-50 shadow-lg border-b border-golden/20">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+                <a href="../index.html" class="flex items-center gap-4">
+                    <img src="../entity-logo.jpeg" alt="كيان إرادة شباب مصر" class="h-12 md:h-16 w-auto rounded-lg">
+                    <div class="hidden md:block">
+                        <h1 class="text-2xl font-bold text-accent">كيان إرادة شباب مصر</h1>
+                        <p class="text-sm text-golden">شباب بإرادة وطنية</p>
+                    </div>
+                </a>
+                <a href="../index.html"
+                    class="back-btn px-6 py-3 bg-card/90 backdrop-blur-sm rounded-full font-bold text-foreground hover:text-accent transition">
+                    العودة لقصص
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container pb-16 relative z-10 pt-8">
+        <!-- ★ الإضافة الجديدة هنا: قسم عنوان القصة + الوصف (مركزي، يندمج مع الديزاين) ★ -->
+        <div class="text-center mb-12 animate-fade-in">
+            <h1 id="story-title" class="text-4xl md:text-5xl font-extrabold text-primary mb-4" style="color: #e4c567;">
+                جاري التحميل...
+            </h1>
+            <p id="story-description" class="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                <!-- الوصف هيظهر ديناميكي هنا -->
+            </p>
+            <br>
+            <br>
+        </div>
+        <!-- نهاية الإضافة -->
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2">
+                <div class="sticky top-8">
+                    <div class="">
+                        <div
+                            class="aspect-video bg-black  shadow-2xl  border-primary/20 relative group video-container">
+                            <!-- الفيديو -->
+                            <video id="videoPlayer" controls="false" preload="none" class="w-full h-full"
+                                download="false">
+                                <source src="" type="video/mp4">
+                                متصفحك لا يدعم تشغيل الفيديو.
+                            </video>
+                            <div id="loading-text"
+                                class="absolute inset-0 flex items-center justify-center bg-black/70 text-white text-2xl font-bold z-10"
+                                style="display: none;">
+                                جاري تحميل الفيديو...
+                            </div>
+                            <!-- Overlay مع زر Play الكبير -->
+                            <div
+                                class="play-overlay absolute inset-0 flex items-center justify-center bg-black/40 transition-opacity duration-500 opacity-100 group-hover:bg-black/60">
+                                <div
+                                    class="w-24 h-24 mx-auto rounded-full bg-primary/80 backdrop-blur-md flex items-center justify-center shadow-2xl hover:scale-110 hover:bg-primary transition-all duration-300 animate-pulse-glow cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                        fill="white" class="lucide lucide-play ml-1">
+                                        <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- Custom Controls (معدل) -->
+                            <div id="custom-controls"
+                                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 flex items-center gap-4 opacity-0 transition-opacity duration-300">
+                                <!-- زر Play/Pause -->
+                                <button id="play-pause-btn"
+                                    class="text-primary hover:text-gold-light transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" class="play-icon">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" class="pause-icon hidden">
+                                        <rect x="6" y="4" width="4" height="16"></rect>
+                                        <rect x="14" y="4" width="4" height="16"></rect>
+                                    </svg>
+                                </button>
+
+                                <!-- عرض الوقت -->
+                                <span id="time-display" class="text-white text-sm font-medium">00:00 / 00:00</span>
+
+                                <!-- شريط التقدم -->
+                                <input type="range" id="progress-bar"
+                                    class="flex-1 h-1 bg-white rounded-full appearance-none cursor-pointer" min="0"
+                                    max="100" value="0">
+
+                                <!-- زر الصوت مع Slider أفقي جنبها -->
+                                <div class="flex items-center gap-2 group">
+                                    <!-- Volume Slider (أفقي جنب الـ button، مرئي دائماً) -->
+                                    <input type="range" id="volume-slider"
+                                        class="w-20 h-1 bg-white rounded-full appearance-none cursor-pointer transition-width group-hover:w-32"
+                                        min="0" max="1" step="0.01" value="1">
+                                    <button id="volume-btn"
+                                        class="text-primary hover:text-gold-light transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            class="volume-high-icon">
+                                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            class="volume-mute-icon hidden">
+                                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                            <line x1="22" x2="16" y1="9" y2="15"></line>
+                                            <line x1="16" x2="22" y1="9" y2="15"></line>
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <!-- زر Fullscreen -->
+                                <button id="fullscreen-btn"
+                                    class="text-primary hover:text-gold-light transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2"
+                                        class="fullscreen-enter-icon">
+                                        <path d="M15 3h6v6"></path>
+                                        <path d="M9 21H3v-6"></path>
+                                        <path d="M21 15v6h-6"></path>
+                                        <path d="M3 9V3h6"></path>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2"
+                                        class="fullscreen-exit-icon hidden">
+                                        <path d="M4 14h2v6h4"></path>
+                                        <path d="M20 10h-2V4h-4"></path>
+                                        <path d="M14 4h6v2"></path>
+                                        <path d="M10 20H4v-2"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-4 bg-card rounded-2xl border border-border">
+                        <h3 id="current-episode-title" class="text-xl font-bold text-primary"
+                            style="justify-self: center; color:#e4c567;">اختر حلقة للمشاهدة
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-1" style="height: 35rem;overflow: overlay;">
+                <div class="bg-card rounded-3xl border border-border p-4 md:p-6 shadow-card h-fit">
+                    <h2 class="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                        <span class="text-2xl">📺</span> قائمة الحلقات
+                    </h2>
+                    <div id="episode-list" class="space-y-3 max-h-[600px] overflow-y-hidden custom-scrollbar">
+                        <!-- الأزرار هتتولد هنا ديناميكي -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <a href="https://engmohamednasr74.github.io/Portfolio/" target="_blank">
+            <div class="mt-16 text-center transition-all duration-500 hover:scale-[1.02] shadow-card border-gold/30 hover:border-gold/60 border-2 bg-card"
+                style="display: inline-block; border-radius: 60px;">
+                <div class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-card  border-border shadow-sm">
+                    <span class="text-xl">🌙</span>
+                    <p class="text-muted-foreground font-medium">تواصل مع المطور</p><span class="text-xl">🏮</span>
+                </div>
+            </div>
+        </a> -->
+    </main>
+
+    <!-- السكريبتات -->
+    <script src="js/eps.js"></script>
+    <script src="js/story.js"></script>
+</body>
+
+</html>
