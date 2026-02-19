@@ -234,7 +234,7 @@ const stories = {
         title: 'قصص الأنبياء بالصلصال',
         description: 'قصص الأنبياء بالصلصال، رحلة إيمانية ممتعة للأطفال مع عبر أخلاقية.',
         episodes: [
-            { num: 1, title: 'أغنية المقدمة', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Prophets_stories_in_clay/Prophets_stories_in_clay_intro.mp3', eps_des: 'مقدمة موسيقية لقصص الأنبياء.' },
+            // { num: 1, title: 'أغنية المقدمة', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Prophets_stories_in_clay/Prophets_stories_in_clay_intro.mp3', eps_des: 'مقدمة موسيقية لقصص الأنبياء.' },
             { num: 2, title: 'أدم', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Prophets_stories_in_clay/Prophets_stories_in_clay_eps1.mp4', eps_des: 'خلق آدم ودخوله الجنة.' },
             { num: 3, title: 'أيوب', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Prophets_stories_in_clay/Prophets_stories_in_clay_eps2.mp4', eps_des: 'صبر أيوب على البلاء والشفاء.' },
             { num: 4, title: 'عزير', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Prophets_stories_in_clay/Prophets_stories_in_clay_eps3.mp44', eps_des: 'معجزة إحياء عزير بعد موته.' },
@@ -267,8 +267,8 @@ const stories = {
         title: 'قصص القرآن بالصلصال',
         description: 'قصص قرآنية مشوقة بالصلصال، تعلم العبر الأخلاقية للأطفال بطريقة فنية.',
         episodes: [
-            { num: 1, title: 'اغنية المقدمة', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Quran_stories_in_clay/Quran_stories_in_clay_intro.mp3', eps_des: 'مقدمة موسيقية جذابة لقصص القرآن.' },
-            { num: 2, title: 'اغنية النهاية', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Quran_stories_in_clay/Quran_stories_in_clay_outro.mp3', eps_des: 'خاتمة موسيقية تعزز العبر الإيمانية.' },
+            // { num: 1, title: 'اغنية المقدمة', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Quran_stories_in_clay/Quran_stories_in_clay_intro.mp3', eps_des: 'مقدمة موسيقية جذابة لقصص القرآن.' },
+            // { num: 2, title: 'اغنية النهاية', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Quran_stories_in_clay/Quran_stories_in_clay_outro.mp3', eps_des: 'خاتمة موسيقية تعزز العبر الإيمانية.' },
             { num: 3, title: 'ذو القرنين', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Quran_stories_in_clay/Quran_stories_in_clay_eps1.mp4', eps_des: 'رحلة ذو القرنين وبناء السد العظيم.' },
             { num: 4, title: 'اصحاب الغار', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Quran_stories_in_clay/Quran_stories_in_clay_eps2.mp4', eps_des: 'قصة أصحاب الغار ومعجزة النوم الطويل.' },
             { num: 5, title: 'اصحاب السبت', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Quran_stories_in_clay/Quran_stories_in_clay_eps3.mp4', eps_des: 'عقاب أصحاب السبت لمخالفتهم الأمر الإلهي.' },
@@ -302,8 +302,8 @@ const stories = {
         title: 'المبشرون بالجنة بالصلصال',
         description: 'قصص العشرة المبشرين بالجنة بالصلصال، قدوة إيمانية ممتعة للأطفال.',
         episodes: [
-            { num: 1, title: 'اغنية المقدمة', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Stories_of_those_promised_Paradise%2C_written_in_clay/Stories_of_those_promised_Paradise%2C_written_in_clay_intro.mp3', eps_des: 'مقدمة موسيقية للمبشرين بالجنة.' },
-            { num: 2, title: 'اغنية النهاية', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Stories_of_those_promised_Paradise%2C_written_in_clay/Stories_of_those_promised_Paradise%2C_written_in_clay_outro.mp3', eps_des: 'خاتمة موسيقية تعزز العبر الإيمانية.' },
+            // { num: 1, title: 'اغنية المقدمة', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Stories_of_those_promised_Paradise%2C_written_in_clay/Stories_of_those_promised_Paradise%2C_written_in_clay_intro.mp3', eps_des: 'مقدمة موسيقية للمبشرين بالجنة.' },
+            // { num: 2, title: 'اغنية النهاية', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Stories_of_those_promised_Paradise%2C_written_in_clay/Stories_of_those_promised_Paradise%2C_written_in_clay_outro.mp3', eps_des: 'خاتمة موسيقية تعزز العبر الإيمانية.' },
             { num: 3, title: 'ابو بكر الصديق 1', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Stories_of_those_promised_Paradise%2C_written_in_clay/Stories_of_those_promised_Paradise%2C_written_in_clay_eps1.mp4', eps_des: 'إيمان أبو بكر وصدقه مع النبي.' },
             { num: 4, title: 'ابو بكر الصديق 2', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Stories_of_those_promised_Paradise%2C_written_in_clay/Stories_of_those_promised_Paradise%2C_written_in_clay_eps2.mp4', eps_des: 'مساهمة أبو بكر في الإسلام.' },
             { num: 5, title: 'ابو بكر الصديق 3', duration: '20 دقيقة', video: 'https://file.garden/aYOOHhOBlkBEdoxq/Stories_of_those_promised_Paradise%2C_written_in_clay/Stories_of_those_promised_Paradise%2C_written_in_clay_eps3.mp4', eps_des: 'خلافة أبو بكر وعبرة الصدق.' },
