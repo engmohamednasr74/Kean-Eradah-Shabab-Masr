@@ -1,26 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
   const select = document.getElementById("governorate-select");
 
-  if (select) {
-    select.addEventListener("change", function () {
-      const slug = this.value;
+  if (!select) {
+    console.warn("لم يتم العثور على عنصر select بـ id = governorate-select");
+    return;
+  }
 
-      if (!slug) return; // لو مفيش اختيار، متعملش حاجة
+  select.addEventListener("change", function () {
+    const slug = this.value.trim();
 
-      let targetUrl = "";
+    if (!slug) return; // لو مفيش اختيار، متعملش حاجة
 
-      if (slug === "main") {
-        // الرجوع للصفحة الرئيسية (events.html في الـ root)
-        targetUrl = "../../"; // ← أو "./events.html" حسب الموقع
-      } else {
-        // للمحافظات → مسار نسبي صحيح
-        targetUrl = `gov/${slug}/events.html`;
-        // اضف اسم كيان قبل رفع الموقع
-        // Kean-Eradah-Shabab-Masr
-      }
+    let targetPath = "";
 
-      // التنقل
-      window.location.href = targetUrl;
-    });
+    if (slug === "main" || slug === "") {
+      // الرجوع للصفحة الرئيسية (index.html في الـ root)
+      targetPath = "../../index.html";
+    } else {
+      // الانتقال لمجلد المحافظة
+      targetPath = `../gov/${slug}/events.html`; // ← غيّر events.html لأي صفحة تانية لو عايز
+    }
+
+    // التنقل
+    window.location.href = targetPath;
+  });
+
+  // اختياري: تحديد القيمة الحالية في الـ select بناءً على المسار
+  const currentPath = window.location.pathname;
+  if (currentPath.includes("/gov/")) {
+    const parts = currentPath.split("/");
+    const currentGov = parts[parts.indexOf("gov") + 1];
+    if (currentGov) select.value = currentGov;
+  } else {
+    select.value = "main";
   }
 });
