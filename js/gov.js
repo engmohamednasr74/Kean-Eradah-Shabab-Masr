@@ -10,17 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
       let targetUrl = "";
 
       if (slug === "main") {
-        // للصفحة الرئيسية → مسار مطلق من الـ root
-        targetUrl = "/events.html"; // ← غيّرها لـ /index.html لو دي الصفحة الرئيسية
-        // أو لو الصفحة الرئيسية هي index.html في الـ root:
-        // targetUrl = '/index.html';
+        // الرجوع للصفحة الرئيسية (events.html في الـ root)
+        targetUrl = "../events.html"; // ← أو "./events.html" حسب الموقع
       } else {
-        // للمحافظات → مسار مطلق من الـ root
-        targetUrl = `/gov/${slug}/events.html`; // نفس الصفحة الحالية في المحافظة الجديدة
-        // لو عايز دايمًا يروح لصفحة معينة (مثل events):
-        // targetUrl = `/gov/${slug}/events.html`;
+        // للمحافظات → مسار نسبي صحيح
+        targetUrl = `../gov/${slug}/events.html`;
       }
 
+      // التنقل
       window.location.href = targetUrl;
     });
   }
