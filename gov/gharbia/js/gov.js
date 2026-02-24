@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (slug === "main" || slug === "") {
       // الرجوع للصفحة الرئيسية (index.html في الـ root)
-      targetPath = "../../index.html";
+      targetPath = "../../";
     } else {
       // الانتقال لمجلد المحافظة
       targetPath = `gov/${slug}/events.html`; // ← غيّر events.html لأي صفحة تانية لو عايز
