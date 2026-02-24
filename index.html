@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fslightbox@3.0.9/index.min.css" />
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/text-css2.css">
+    <link rel="stylesheet" href="css/news_impo.css">
     <style>
         .swiper-button-next:after,
         .swiper-button-prev:after {
@@ -61,27 +62,6 @@
 
         #mobile-overlay:not(.hidden) {
             opacity: 1;
-        }
-
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-100%);
-            }
-
-        }
-
-        .animate-marquee {
-            animation: marquee 30s linear infinite;
-            display: inline-block;
-            padding-left: 100%;
-        }
-
-        .animate-marquee:hover {
-            animation-play-state: paused;
         }
     </style>
 </head>
@@ -208,6 +188,35 @@
                                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                             </svg>انضم إلينا</a></nav>
                     <div class="flex items-center gap-4">
+                        <select id="governorate-select"
+                            class="bg-card border border-golden/30 rounded-full px-4 py-2 text-foreground text-sm font-medium hover:border-golden hover:bg-primary/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent shadow-sm">
+                            <option value="" selected disabled>اختر المحافظه</option>
+                            <option value="cairo">القاهرة</option>
+                            <option value="giza">الجيزة</option>
+                            <option value="alexandria">الإسكندرية</option>
+                            <option value="dakahlia">الدقهلية</option>
+                            <option value="sharqia">الشرقية</option>
+                            <option value="gharbia">الغربية</option>
+                            <option value="kafr-el-sheikh">كفر الشيخ</option>
+                            <option value="damietta">دمياط</option>
+                            <option value="port-said">بورسعيد</option>
+                            <option value="ismailia">الإسماعيلية</option>
+                            <option value="suez">السويس</option>
+                            <option value="north-sinai">شمال سيناء</option>
+                            <option value="south-sinai">جنوب سيناء</option>
+                            <option value="red-sea">البحر الأحمر</option>
+                            <option value="faiyum">الفيوم</option>
+                            <option value="beni-suef">بني سويف</option>
+                            <option value="minya">المنيا</option>
+                            <option value="asyut">أسيوط</option>
+                            <option value="sohag">سوهاج</option>
+                            <option value="qena">قنا</option>
+                            <option value="luxor">الأقصر</option>
+                            <option value="aswan">أسوان</option>
+                            <option value="matruh">مطروح</option>
+                            <option value="new-valley">الوادي الجديد</option>
+                            <option value="qalyubia">القليوبية</option>
+                        </select>
                         <img src="img/ministry-logo.png" alt="وزارة الشباب والرياضة"
                             class="h-10 md:h-14 w-auto hidden md:block bg-foreground/90 rounded p-1"><img
                             src="img/federation-logo.png" alt="الاتحاد المصري للكيانات الشبابية"
@@ -544,8 +553,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-database-compat.js"></script>
     <script src="js/Firebase-public.js"></script>
     <script src="js/index.js"></script>
-
-
+    <script src="js/news_impo.js"></script>
+    <script src="js/gov.js"></script>
 </body>
 
 </html>

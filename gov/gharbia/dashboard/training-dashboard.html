@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إدارة البرامج التدريبية - إرادة شباب مصر</title>
+    <title>إدارة البرامج التدريبية - الغربية | كيان إرادة شباب مصر</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/text-css2.css">
     <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
-    <meta name="author" content="Developer_Engineer Eng_Mohamed_Nasr_Mohamed_Ali_Younes">
     <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-database-compat.js"></script>
     <script src="js/Firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -33,11 +32,12 @@
     <header class="bg-card border-b border-golden/20 sticky top-0 z-50">
         <div class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
-                <h1 class="text-2xl font-bold text-accent">إدارة البرامج التدريبية</h1>
-                <a href="dashboard.html" class="text-foreground/80 hover:text-accent">عودة إلى الداشبورد</a>
+                <h1 class="text-2xl font-bold text-accent">إدارة البرامج التدريبية - الغربية</h1>
+                <a href="dashboard.html" class="text-foreground/80 hover:text-accent">عودة إلى لوحة التحكم</a>
             </div>
         </div>
     </header>
+
     <main class="container mx-auto px-4 py-12">
         <div id="login-section" class="text-center my-8">
             <button onclick="loginAsAdmin()"
@@ -57,7 +57,7 @@
                         required></textarea>
                     <input type="url" id="training-image" placeholder="رابط الصورة (اختياري)"
                         class="border p-2 mb-2 w-full">
-                    <select id="training-status" class="border p-2 mb-2 w-full" required style="color:#9ca3af ;">
+                    <select id="training-status" class="border p-2 mb-2 w-full" required style="color: #000;">
                         <option value="main">اختر حالة البرنامج</option>
                         <option value="سيبدأ قريباً">سيبدأ قريباً</option>
                         <option value="جاري">جاري</option>
@@ -71,14 +71,14 @@
             </section>
 
             <section>
-                <h2 class="text-xl font-bold mb-4">البرامج التدريبية الحالية</h2>
+                <h2 class="text-xl font-bold mb-4">البرامج التدريبية الحالية - الغربية</h2>
                 <table class="w-full border-collapse">
                     <thead>
                         <tr class="bg-muted">
                             <th class="p-2">الاسم</th>
                             <th class="p-2">الوصف</th>
                             <th class="p-2">الصورة</th>
-                            <th class="p-2">الحاله</th>
+                            <th class="p-2">الحالة</th>
                             <th class="p-2">إجراءات</th>
                         </tr>
                     </thead>
@@ -87,8 +87,7 @@
             </section>
 
             <section id="certificate-section" class="mt-8 hidden">
-                <h2 class="text-xl font-bold mb-4">طباعة الشهادات للتدريب: <span id="selected-training-title"></span>
-                </h2>
+                <h2 class="text-xl font-bold mb-4">طباعة الشهادات: <span id="selected-training-title"></span></h2>
                 <input type="hidden" id="selected-training-id">
                 <textarea id="attendees-names" placeholder="أدخل أسماء الحاضرين (كل اسم في سطر جديد)"
                     class="border p-2 mb-2 w-full" rows="5" required></textarea>
@@ -97,7 +96,78 @@
             </section>
         </div>
     </main>
-    <script src="js/training-dashboard.js"></script>
+
+    <script>
+        const path = "governorates/gharbia/training";
+
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                document.getElementById('login-section').classList.add('hidden');
+                document.getElementById('admin-content').classList.remove('hidden');
+                loadTrainings();
+            } else {
+                document.getElementById('login-section').classList.remove('hidden');
+                document.getElementById('admin-content').classList.add('hidden');
+            }
+        });
+
+        function loadTrainings() {
+            db.ref(path).on('value', snapshot => {
+                const list = document.getElementById('training-list');
+                list.innerHTML = '';
+                const data = snapshot.val() || {};
+                Object.entries(data).forEach(([id, item]) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="p-2">${item.title || ''}</td>
+                        <td class="p-2">${item.desc || ''}</td>
+                        <td class="p-2">${item.image ? '<img src="' + item.image + '" width="50">' : 'لا صورة'}</td>
+                        <td class="p-2">${item.status || ''}</td>
+                        <td class="p-2">
+                            <button onclick="editTraining('${id}')" class="bg-yellow-600 text-white px-3 py-1 rounded text-sm">تعديل</button>
+                            <button onclick="deleteTraining('${id}')" class="bg-red-600 text-white px-3 py-1 rounded text-sm">حذف</button>
+                        </td>
+                    `;
+                    list.appendChild(row);
+                });
+            });
+        }
+
+        const form = document.getElementById('training-form');
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const data = {
+                title: document.getElementById('training-title').value,
+                desc: document.getElementById('training-desc').value,
+                image: document.getElementById('training-image').value,
+                status: document.getElementById('training-status').value
+            };
+            const id = document.getElementById('training-id').value;
+            if (id) {
+                db.ref(`${path}/${id}`).update(data);
+            } else {
+                db.ref(path).push(data);
+            }
+            form.reset();
+            document.getElementById('training-id').value = '';
+            loadTrainings();
+        });
+
+        function editTraining(id) {
+            db.ref(`${path}/${id}`).once('value', snap => {
+                const item = snap.val();
+                document.getElementById('training-id').value = id;
+                document.getElementById('training-title').value = item.title || '';
+                document.getElementById('training-desc').value = item.desc || '';
+                document.getElementById('training-image').value = item.image || '';
+                document.getElementById('training-status').value = item.status || '';
+            });
+        }
+
+        function deleteTraining(id) {
+            db.ref(`${path}/${id}`).remove();
+        }
+    </script>
 </body>
 
 </html>

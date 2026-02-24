@@ -36,28 +36,7 @@
     <script src="https://cdn.tailwindcss.com" data-tailwind-jit="true"></script>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/text-css2.css">
-    <style>
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-100%);
-            }
-
-        }
-
-        .animate-marquee {
-            animation: marquee 30s linear infinite;
-            display: inline-block;
-            padding-left: 100%;
-        }
-
-        .animate-marquee:hover {
-            animation-play-state: paused;
-        }
-    </style>
+    <link rel="stylesheet" href="css/news_impo.css">
 </head>
 
 <body>
@@ -190,6 +169,35 @@
                                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                 </svg>انضم إلينا</a></nav>
                         <div class="flex items-center gap-4">
+                            <select id="governorate-select"
+                                class="bg-card border border-golden/30 rounded-full px-4 py-2 text-foreground text-sm font-medium hover:border-golden hover:bg-primary/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent shadow-sm">
+                                <option value="" selected disabled>اختر المحافظه</option>
+                                <option value="cairo">القاهرة</option>
+                                <option value="giza">الجيزة</option>
+                                <option value="alexandria">الإسكندرية</option>
+                                <option value="dakahlia">الدقهلية</option>
+                                <option value="sharqia">الشرقية</option>
+                                <option value="gharbia">الغربية</option>
+                                <option value="kafr-el-sheikh">كفر الشيخ</option>
+                                <option value="damietta">دمياط</option>
+                                <option value="port-said">بورسعيد</option>
+                                <option value="ismailia">الإسماعيلية</option>
+                                <option value="suez">السويس</option>
+                                <option value="north-sinai">شمال سيناء</option>
+                                <option value="south-sinai">جنوب سيناء</option>
+                                <option value="red-sea">البحر الأحمر</option>
+                                <option value="faiyum">الفيوم</option>
+                                <option value="beni-suef">بني سويف</option>
+                                <option value="minya">المنيا</option>
+                                <option value="asyut">أسيوط</option>
+                                <option value="sohag">سوهاج</option>
+                                <option value="qena">قنا</option>
+                                <option value="luxor">الأقصر</option>
+                                <option value="aswan">أسوان</option>
+                                <option value="matruh">مطروح</option>
+                                <option value="new-valley">الوادي الجديد</option>
+                                <option value="qalyubia">القليوبية</option>
+                            </select>
                             <img src="img/ministry-logo.png" alt="وزارة الشباب والرياضة"
                                 class="h-10 md:h-14 w-auto hidden md:block bg-foreground/90 rounded p-1"><img
                                 src="img/federation-logo.png" alt="الاتحاد المصري للكيانات الشبابية"
@@ -228,7 +236,7 @@
                                             <circle cx="12" cy="7" r="4"></circle>
                                         </svg>الاسم الكامل (كما في البطاقة) *</label><input type="text" name="fullName"
                                         class="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:border-secondary text-foreground"
-                                        placeholder="أدخل اسمك الكامل" id="fullName" required="" value=""></div>
+                                        placeholder="أدخل اسمك الكامل" id="fullName" required="" value="main"></div>
                                 <div class="mb-6"><label
                                         class="flex items-center gap-2 text-accent font-semibold mb-2"><svg
                                             xmlns="http://www.w3.org/2000/svg" width="18" height="18"
@@ -239,7 +247,7 @@
                                             </path>
                                         </svg>رقم الهاتف *</label><input type="tel" name="phone" maxlength="11"
                                         class="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:border-secondary text-foreground"
-                                        placeholder="01012345678" dir="ltr" id="phone" required="" value=""></div>
+                                        placeholder="01012345678" dir="ltr" id="phone" required="" value="main"></div>
                                 <div class="mb-6"><label
                                         class="flex items-center gap-2 text-accent font-semibold mb-2"><svg
                                             xmlns="http://www.w3.org/2000/svg" width="18" height="18"
@@ -251,13 +259,13 @@
                                         </svg>الرقم القومي *</label><input type="text" name="nationalId"
                                         class="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:border-secondary text-foreground"
                                         placeholder="أدخل الرقم القومي (14 رقم)" id="nationalId" maxlength="14"
-                                        dir="ltr" required="" value=""></div>
+                                        dir="ltr" required="" value="main"></div>
                                 <div class="mb-6"><label
                                         class="flex items-center gap-2 text-accent font-semibold mb-2">المحافظة
                                         *</label><select name="governorate"
                                         class="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:border-secondary text-foreground"
                                         required="" id="governorate">
-                                        <option value="">اختر المحافظة</option>
+                                        <option value="main">اختر المحافظة</option>
                                         <option value="القاهرة">القاهرة</option>
                                         <option value="الجيزة">الجيزة</option>
                                         <option value="الإسكندرية">الإسكندرية</option>
@@ -300,7 +308,7 @@
                                         </svg>المؤهل *</label><select name="qualification"
                                         class="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:border-secondary text-foreground"
                                         required="" id="qualification">
-                                        <option value="">اختر المؤهل</option>
+                                        <option value="main">اختر المؤهل</option>
                                         <option value="مؤهل عالي">مؤهل عالي</option>
                                         <option value="مؤهل فوق متوسط">مؤهل فوق متوسط</option>
                                         <option value="مؤهل متوسط">مؤهل متوسط</option>
@@ -317,7 +325,7 @@
                                         </svg>اللجنة التي ترغب في الانضمام إليها *</label><select name="committee"
                                         class="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:border-secondary text-foreground"
                                         required="" id="committee">
-                                        <option value="">اختر اللجنة</option>
+                                        <option value="main">اختر اللجنة</option>
                                         <option value="لجنة الصحة">لجنة الصحة</option>
                                         <option value="لجنة التدريب والتعليم">لجنة التدريب والتعليم</option>
                                         <option value="لجنة الرياضة">لجنة الرياضة</option>
@@ -470,7 +478,8 @@
     <script src="js/Firebase-public.js"></script>
     <script src="js/Mobile-Menu-Slide.js"></script>
     <script src="js/membership-form.js"></script>
-    <script src="js/media.js"></script>
+    <script src="js/news_impo.js"></script>
+    <script src="js/gov.js"></script>
 </body>
 
 </html>

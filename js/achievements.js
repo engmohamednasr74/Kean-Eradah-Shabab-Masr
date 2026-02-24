@@ -16,12 +16,3 @@ db.ref('achievements').on('value', (snapshot) => {
         container.innerHTML = '<p class="text-center text-muted-foreground">لا توجد إنجازات حاليًا.</p>';
     }
 });
-
-
-db.ref('news').on('value', (snapshot) => {
-    const container = document.getElementById('news-ticker');
-    container.innerHTML = '';
-    const data = snapshot.val() || {};
-    const titles = Object.values(data).map(item => item.title).join(' - ');
-    container.innerHTML = titles ? `<span>${titles}</span>` : 'لا توجد أخبار حاليًا.';
-});

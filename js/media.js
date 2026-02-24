@@ -16,13 +16,3 @@ db.ref('media').on('value', (snapshot) => {
         container.innerHTML = '<p class="text-center text-muted-foreground">لا توجد برامج إعلامية حاليًا.</p>';
     }
 });
-
-
-
-db.ref('news').on('value', (snapshot) => {
-    const container = document.getElementById('news-ticker');
-    container.innerHTML = '';
-    const data = snapshot.val() || {};
-    const titles = Object.values(data).map(item => item.title).join(' - '); // جمع العناوين بـ "-"
-    container.innerHTML = titles ? `<span>${titles}</span>` : 'لا توجد أخبار حاليًا.';
-});
