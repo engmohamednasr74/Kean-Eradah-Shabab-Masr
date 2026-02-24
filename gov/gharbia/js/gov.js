@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       targetPath = "../../index.html";
     } else {
       // الانتقال لمجلد المحافظة
-      targetPath = `../gov/${slug}/events.html`; // ← غيّر events.html لأي صفحة تانية لو عايز
+      targetPath = `gov/${slug}/events.html`; // ← غيّر events.html لأي صفحة تانية لو عايز
     }
 
     // التنقل
