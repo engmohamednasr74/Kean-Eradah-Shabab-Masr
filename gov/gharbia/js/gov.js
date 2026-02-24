@@ -11,10 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (slug === "main") {
         // الرجوع للصفحة الرئيسية (events.html في الـ root)
-        targetUrl = "../Kean-Eradah-Shabab-Masr/events.html"; // ← أو "./events.html" حسب الموقع
+        targetUrl = "../../events.html"; // ← أو "./events.html" حسب الموقع
       } else {
         // للمحافظات → مسار نسبي صحيح
-        targetUrl = `../Kean-Eradah-Shabab-Masr/gov/${slug}/events.html`;
+        targetUrl = `../gov/${slug}/events.html`;
+        // اضف اسم كيان قبل رفع الموقع
+        // Kean-Eradah-Shabab-Masr
       }
 
       // التنقل
