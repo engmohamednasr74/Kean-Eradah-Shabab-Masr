@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         targetUrl = "../../events.html"; // ← أو "./events.html" حسب الموقع
       } else {
         // للمحافظات → مسار نسبي صحيح
-        targetUrl = `Kean-Eradah-Shabab-Masr/gov/${slug}/events.html`;
+        targetUrl = `gov/${slug}/events.html`;
         // اضف اسم كيان قبل رفع الموقع
         // Kean-Eradah-Shabab-Masr
       }
