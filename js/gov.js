@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (slug === "main") {
         // الرجوع للصفحة الرئيسية (events.html في الـ root)
-        targetUrl = "../../../index.html"; // ← أو "./events.html" حسب الموقع
+        targetUrl = "../../"; // ← أو "./events.html" حسب الموقع
       } else {
         // للمحافظات → مسار نسبي صحيح
         targetUrl = `gov/${slug}/events.html`;
