@@ -16,23 +16,32 @@ function loadTrainings() {
     const list = document.getElementById("training-list");
     list.innerHTML = "";
     const data = snapshot.val() || {};
+
     Object.entries(data).forEach(([id, item]) => {
       const row = document.createElement("tr");
       row.innerHTML = `
-                        <td class="p-2">${item.title || ""}</td>
-                        <td class="p-2">${item.desc || ""}</td>
-                        <td class="p-2">${item.image ? '<img src="' + item.image + '" width="50">' : "لا صورة"}</td>
-                        <td class="p-2">${item.status || ""}</td>
-                        <td class="p-2">
-                            <button onclick="editTraining('${id}')" class="bg-yellow-600 text-white px-3 py-1 rounded text-sm">تعديل</button>
-                            <button onclick="deleteTraining('${id}')" class="bg-red-600 text-white px-3 py-1 rounded text-sm">حذف</button>
-                        </td>
-                    `;
+                <td class="p-2">${item.title || ""}</td>
+                <td class="p-2">${item.desc || ""}</td>
+                <td class="p-2">${item.image ? '<img src="' + item.image + '" width="50">' : "لا صورة"}</td>
+                <td class="p-2">${item.status || ""}</td>
+                <td class="p-2">
+                    <button onclick="editTraining('${id}')" class="bg-yellow-600 text-white px-3 py-1 rounded text-sm">تعديل</button>
+                    <button onclick="deleteTraining('${id}')" class="bg-red-600 text-white px-3 py-1 rounded text-sm">حذف</button>
+                    
+                    ${
+                      item.status === "منتهي"
+                        ? `<button onclick="window.location.href='certificate-generator.html?id=${id}&title=${encodeURIComponent(item.title)}'" 
+                            class="bg-green-600 text-white px-3 py-1 rounded text-sm">طباعة شهادات</button>`
+                        : ""
+                    }
+                </td>
+            `;
       list.appendChild(row);
     });
   });
 }
 
+// باقي الدوال (edit, delete, form submit) تبقى كما هي
 const form = document.getElementById("training-form");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -65,5 +74,7 @@ function editTraining(id) {
 }
 
 function deleteTraining(id) {
-  db.ref(`${path}/${id}`).remove();
+  if (confirm("هل أنت متأكد من حذف هذا البرنامج؟")) {
+    db.ref(`${path}/${id}`).remove();
+  }
 }
